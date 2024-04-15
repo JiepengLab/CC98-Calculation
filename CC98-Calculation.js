@@ -1,13 +1,16 @@
 // ==UserScript==
 // @name         风评计算
 // @namespace    https://note.jiepeng.tech
-// @version      2024-04-14
+// @version      2024-04-15
 // @description  计算CC98的风评并在展开按钮点击时进行统计
 // @author       ColdInk杰
 // @match        https://www.cc98.org/*
 // @match        www-cc98-org-s.webvpn.zju.edu.cn:8001/*
 // @icon         https://www.cc98.org/static/images/心灵头像.gif
 // @grant        none
+// @license MIT
+// @downloadURL https://update.greasyfork.org/scripts/492534/%E9%A3%8E%E8%AF%84%E8%AE%A1%E7%AE%97.user.js
+// @updateURL https://update.greasyfork.org/scripts/492534/%E9%A3%8E%E8%AF%84%E8%AE%A1%E7%AE%97.meta.js
 // ==/UserScript==
 
 (function () {
@@ -84,12 +87,12 @@
 
         replies.forEach(function (reply) {
 
-            for (let i = 0; i < reply.children.length; i++) {
-                console.log(reply.id);
-            }
+            // for (let i = 0; i < reply.children.length; i++) {
+            //     console.log(reply.id);
+            // }
 
             let creditElements = reply.querySelectorAll('.grades');
-            console.log(creditElements);
+            // console.log(creditElements);
             // 统计每个回复中风评值加和风评值减的个数以及对应的理由
             let positiveCreditsCount = 0;
             let negativeCreditsCount = 0;
@@ -119,19 +122,19 @@
 
             if (positiveCreditsCount > 0 || negativeCreditsCount > 0) {
 
-                // 输出统计结果
-                //console.log("用户: " + userName);
-                console.log("风评值加的个数: " + positiveCreditsCount);
-                console.log("对应的风评值加的理由:");
-                Object.keys(positiveCreditsReasons).forEach(function (reason, index) {
-                    console.log((index + 1) + ". " + reason + " 出现 " + positiveCreditsReasons[reason] + " 次");
-                });
-                console.log("风评值减的个数: " + negativeCreditsCount);
-                console.log("对应的风评值减的理由:");
-                Object.keys(negativeCreditsReasons).forEach(function (reason, index) {
-                    console.log((index + 1) + ". " + reason + " 出现 " + negativeCreditsReasons[reason] + " 次");
-                });
-                console.log("\n");
+                // // 输出统计结果
+                // //console.log("用户: " + userName);
+                // console.log("风评值加的个数: " + positiveCreditsCount);
+                // console.log("对应的风评值加的理由:");
+                // Object.keys(positiveCreditsReasons).forEach(function (reason, index) {
+                //     console.log((index + 1) + ". " + reason + " 出现 " + positiveCreditsReasons[reason] + " 次");
+                // });
+                // console.log("风评值减的个数: " + negativeCreditsCount);
+                // console.log("对应的风评值减的理由:");
+                // Object.keys(negativeCreditsReasons).forEach(function (reason, index) {
+                //     console.log((index + 1) + ". " + reason + " 出现 " + negativeCreditsReasons[reason] + " 次");
+                // });
+                // console.log("\n");
 
                 insertVisualizedInfo(reply, positiveCreditsCount, negativeCreditsCount, positiveCreditsReasons, negativeCreditsReasons);
                 flag = 1;
