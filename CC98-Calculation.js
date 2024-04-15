@@ -29,19 +29,23 @@
         // 风评值加的个数
         visualizationDiv.innerHTML += "<b>风评值加的个数:</b> " + positiveCreditsCount + "<br>";
 
-        // 风评值加的理由
+        // 对应的风评值加的理由
         visualizationDiv.innerHTML += "<b>对应的风评值加的理由:</b><br>";
-        Object.keys(positiveCreditsReasons).forEach(function (reason, index) {
-            visualizationDiv.innerHTML += (index + 1) + ". " + reason + " 出现 " + positiveCreditsReasons[reason] + " 次<br>";
+        // 将理由和次数转换为数组并按次数降序排序
+        let positiveReasonsSorted = Object.entries(positiveCreditsReasons).sort((a, b) => b[1] - a[1]);
+        positiveReasonsSorted.forEach(function (reason, index) {
+            visualizationDiv.innerHTML += (index + 1) + ". " + reason[0] + " 出现 " + reason[1] + " 次<br>";
         });
 
         // 风评值减的个数
         visualizationDiv.innerHTML += "<br><b>风评值减的个数:</b> " + negativeCreditsCount + "<br>";
 
-        // 风评值减的理由
+        // 对应的风评值减的理由
         visualizationDiv.innerHTML += "<b>对应的风评值减的理由:</b><br>";
-        Object.keys(negativeCreditsReasons).forEach(function (reason, index) {
-            visualizationDiv.innerHTML += (index + 1) + ". " + reason + " 出现 " + negativeCreditsReasons[reason] + " 次<br>";
+        // 将理由和次数转换为数组并按次数降序排序
+        let negativeReasonsSorted = Object.entries(negativeCreditsReasons).sort((a, b) => b[1] - a[1]);
+        negativeReasonsSorted.forEach(function (reason, index) {
+            visualizationDiv.innerHTML += (index + 1) + ". " + reason[0] + " 出现 " + reason[1] + " 次<br>";
         });
 
         // 找到对应的awardInfo类并插入可视化信息
